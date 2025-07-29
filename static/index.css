@@ -1,0 +1,49 @@
+
+body {
+    background: linear-gradient(to bottom, #00ff15, #ffff00); /*used chatgpt to figure out about linear-gradient as well as using cover in background-size to cover the whole page with the background*/
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin:0;
+} 
+.img-left{
+    position:absolute;
+    top:0;
+    left:0;
+    height:60vh;
+    object-fit: contain;
+}
+.img-left1{
+    position:absolute;
+    bottom:0;
+    left:0;   /*used AI to figure out how to do a mirror flip and also why position:absolute is important as it lets you precisely control it's position*/
+    height:40vh;
+    object-fit: contain;
+    transform: scaleX(-1);  
+}
+.img-right{
+    position:absolute;
+    top:0;
+    right:0;
+    height:60vh;
+    object-fit: contain;
+}
+.img-right1{
+    position:absolute;
+    bottom:0;
+    right:0px;
+    height:40vh;
+    object-fit: contain;
+   
+}
+h1{
+  color: rgb(12, 12, 12);
+  font-family: Lucida;
+  font-size: 400%;
+}
+h2 {
+  color: rgb(9, 9, 9);
+  font-family: courier;
+  font-size: 250%;
+}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block navbar %}
+{% endblock %}
+{% block title %}
+    Your score
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='score.css') }}">
+{% endblock %}
+{% block main %}
+<body>
+    <form action="/score" method="get">
+        <div class = "page-wrapper">
+            <div class = "left-container">  <!-- Used AI to figure out about structuring using left-container and right-containers and how page-wrapper is helpful -->
+                <h2><span class="Stats">Stats:</span></h2>
+                <p>Score = {{score}}</p>
+                <p>Elapsed Time = {{elapsedTime}} seconds</p>
+                <p>Level {{level}}</p>
+                <p>Grade Level: {{index}}</p>
+                 <progress id="xp-progress" value="{{xp}}" max="{{levelXp}}"></progress>
+                <div class="xp-text">XP: <span id="current-xp-alt">{{xp}}</span> / <span id="max-xp-alt">{{levelXp}}</span></div>
+            </div>
+            <div class = "right-container">
+                <h2><span class = "Text">Speech:</span></h2>
+                <div id = "result">{{text}}</div>
+            </div>
+        </div>
+    </form>
+     <div class="d-flex flex-column align-items-center justify-content-end" style="height: 20vh;">
+        <a href="/play" class="btn btn-primary btn-lg mb-3" style="background-color: #6a00ff; border-radius: 15px;font-family:'Orbitron'; font-size: 30px">Play Again</a>
+        <a href="/" class="btn btn-primary btn-lg mb-3" style="background-color: #6a00ff; border-radius: 15px;font-family:'Orbitron'; font-size: 30px">Homepage</a>
+    </div>
+</body>
+    
+{% endblock %}

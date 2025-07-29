@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <div class = "position-relative text-center">
+        <img src="/static/images/niko.jpg" alt="niko"></img>
+        <h2 class="position-absolute top-0 start-50 translate-middle-x text-white text-shadow" style="margin-top: 20px;">
+            {{ top }}
+        </h2>
+
+        <!-- Bottom text -->
+        <h2 class="position-absolute bottom-0 start-50 translate-middle-x text-white text-shadow" style="margin-bottom: 20px;">
+            {{ bottom }}
+        </h2>
+
+    </div>
+{% endblock %}

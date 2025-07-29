@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block navbar %}
+{% endblock %}
+{% block title %}
+    Play
+{% endblock %}
+
+{% block main %}
+{% block styles %}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='play.css') }}">
+{% endblock %}
+
+    <form action="/play" method="post">
+        <body> 
+        <h1>Speak for 45-60 seconds about this word: {{word}}.</h1>
+        <h2>Feel free to search up the definition.You should have no more than 5 minutes for any research.</h2>
+        <h3>Rules(Points will be deducted if not followed): Must mention the word, Must be in the timeframe</h3>
+        <div class="mb-3">
+            <button id = "startButton" class="btn btn-primary" type ="button"> Start</button>
+            <div id = "result"> </div>
+            <input type="hidden" name="transcriptInput" id="transcriptInput" type ="text">
+            <input type="hidden" name="elapsedTime" id="elapsedTime">
+            <script>
+            document.addEventListener("DOMContentLoaded", function () { 
+            const form = document.querySelector("form");
+            const start = document.getElementById("startButton");
+            const resultDiv = document.getElementById('result');
+            const transcriptInput = document.getElementById("transcriptInput");
+            const elapsedTime = document.getElementById("elapsedTime");
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+            let listening = false;
+            let finalTranscript = '';
+
+            recognition.onresult = (event) => { //used CHATGPT to find a way to see why when I speak, the input is doubling. found out how to counter it using .isFinal
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    let result = event.results[i];
+                    if (result.isFinal) { 
+                        finalTranscript += result[0].transcript; 
+                    } 
+                    else {
+                        interimTranscript += result[0].transcript;
+                    }
+                }   
+                resultDiv.innerHTML = finalTranscript + interimTranscript;
+                transcriptInput.value = finalTranscript + interimTranscript;           
+            };
+            //recognition.onresult = (event) => {  //my code
+            //let transcript = '';
+            //for (let i = event.resultIndex; i < event.results.length; i++) {
+            //transcript = event.results[i][0].transcript;
+            //}
+            //resultDiv.innerHTML += transcript;
+            //transcriptInput.value += transcript;
+            //}
+            let startTime = 0;
+            start.addEventListener("click",() =>{
+                if(listening){
+                    listening = false;
+                    recognition.stop()
+                    elapsedTime.value = Math.round((Date.now() - startTime) / 1000);
+                    start.textContent = "Start";
+                    form.submit();
+                }
+                else{
+                    
+                    listening = true;
+                    recognition.start()
+                    startTime = Date.now();
+                    console.log('Speech recognition started');
+                    start.textContent = "Stop";
+                }
+                
+            })});
+           
+            
+</script>
+            <div> 
+            </div>
+        </div>
+        </body>
+    </form>
+{% endblock %}

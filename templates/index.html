@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block navbar %}
+{% endblock %}
+{% block title %}
+    SpeechMasterSimulator
+{% endblock %}
+{% block main %}
+{% block styles %}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+<body>
+    <img src="/static/images/images.jpg" alt="T.D.R" class="img-left"></img>
+    <img src="/static/images/ghandi.webp" alt="Ghandi" class="img-right"></img>
+    <img src="/static/images/obama.png" alt="obama" class="img-left1"></img>
+    <img src="/static/images/obama.png" alt="obama1" class="img-right1"></img>
+    <h1>SpeechMaster Simulator</h1>
+    <h2>Public Speaking Trainer</h2>
+    <div class="d-flex flex-column align-items-center justify-content-center" style="height: 60vh;">
+        <a href="/play" class="btn btn-primary btn-lg mb-3" style="background-color: #6a00ff; border-radius: 15px;font-family:'Orbitron'; font-size: 30px">A D V A N C E</a>
+        <a href="/score" class="btn btn-primary btn-lg mb-3"style="background-color: #6a00ff; border-radius: 15px; font-family:'Trebuchet MS'; font-size: 30px">Profile</a>
+        <a href="/login" class="btn btn-primary btn-lg mb-3"style="background-color: #6a00ff; border-radius: 15px;font-family:'Audiowide'; font-size: 30px">Login</a>
+        <a href="/register" class="btn btn-primary btn-lg mb-3"style="background-color: #6a00ff; border-radius: 15px;font-family: 'Brush Script MT'; font-size: 30px">Register</a>
+        <a href="/logout" class="btn btn-primary btn-lg mb-3"style="background-color: #6a00ff; border-radius: 15px;font-family: 'Georgia'; font-size: 30px">Log Out</a>
+    </div>
+</body>
+{% endblock %}
